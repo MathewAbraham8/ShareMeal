@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap');
+
+.footer{
+    display: flex;
+    padding: 3rem;
+    background-color: #f5f5f5;
+    justify-content: space-around;
+    font-size: 'Poppins','sans-serif';
+}
+
+.heading-footer{
+    font-size: 3rem;
+    padding: 1rem;
+    font-weight: 800;
+}
+
+.heading-footer span{
+    color: red;
+}
+
+.footer-h4{
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+}
+
+.footer-p{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    color: #858484;
+}
+
+.footer-p:hover{
+    color:black;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.footer-icons{
+    display: flex;
+    flex-direction: row;
+}

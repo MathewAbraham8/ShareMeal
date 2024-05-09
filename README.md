@@ -1,8 +1,8 @@
-# Food Donation
+# ShareMeal
 
-[![Food Donation](https://img.youtube.com/vi/uiFmoIfHRp8/0.jpg)](https://www.youtube.com/watch?v=uiFmoIfHRp8)
 
-Food Donation is a web application aimed at connecting individuals and organizations willing to donate excess food with those in need. It provides a platform to reduce food wastage and contribute to the well-being of communities.
+
+ShareMeal is a web application aimed at connecting individuals and organizations willing to donate excess food with those in need. It provides a platform to reduce food wastage and contribute to the well-being of communities.
 
 ## Features
 
@@ -23,7 +23,7 @@ Food Donation is a web application aimed at connecting individuals and organizat
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/devprashantt/food-donation.git`
+1. Clone the repository: `git clone https://github.com/MathewAbraham8/ShareMeal.git`
 
 2. Frontend Installation:
 - Navigate to the project frontend directory:

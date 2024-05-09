@@ -4,13 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
+
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     number: "",
+    user_type: "",
   });
+
+
+
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   const navigate = useNavigate();
 
@@ -26,10 +37,12 @@ const Signup = () => {
       email: formData.email,
       password: formData.password,
       number: formData.number,
+      user_type: selectedOption,
     };
     try {
       axios.post("http://localhost:3000/signup", data).then((response) => {
-        console.log(response);
+      console.log(data)  
+      console.log(response);
       });
 
       navigate("/"); // redirect to home page
@@ -78,6 +91,28 @@ const Signup = () => {
             onChange={handleChange}
             placeholder="Enter your phone number"
             id="phone"
+          />
+          
+          <label>Doner</label>
+          <input 
+            type="radio"
+            name="user_type"
+            value="doner"
+            checked={selectedOption === 'doner'}
+            onChange={handleOptionChange }
+
+
+
+          />
+
+          <label>Reciver</label>
+          <input 
+            type="radio"
+            name="user_type"
+            value="reciver"
+            checked={selectedOption === 'reciver'}
+            onChange={handleOptionChange }
+
           />
 
           <button type="submit" id="signup-btn" onClick={handleSubmit}>

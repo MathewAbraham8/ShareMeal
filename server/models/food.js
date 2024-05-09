@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const foodSchema = new mongoose.Schema({
     foodName: {
@@ -24,6 +25,17 @@ const foodSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
+    status: {
+        type : String,
+        default : 'not_collected'
+
+    },
+    recipient: {
+        type : String
+    },
+    phone: {
+        type : String
+    }
 });
 
 const Food = mongoose.model("Food", foodSchema);

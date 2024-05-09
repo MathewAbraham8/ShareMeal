@@ -68,7 +68,7 @@ const Navbar = ({ token }) => {
         {
           // if token is present then show logout button else show login and signup button
           token ? (
-            <Link className="link" to="/dashboard">
+            <Link className="link" to="/">
               <button className="btn-nav">Dashboard</button>
             </Link>
           ) : (

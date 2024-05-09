@@ -100,3 +100,13 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }
+
+.radio-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  .radio-label {
+    margin-right: 20px;
+  }
+  

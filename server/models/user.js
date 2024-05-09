@@ -20,12 +20,19 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        user_type: [
+            {
+                type: String,
+                required: true
+            }
+        ],
         food: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Food",
             },
         ],
+
     },
     { timestamps: true }
 );

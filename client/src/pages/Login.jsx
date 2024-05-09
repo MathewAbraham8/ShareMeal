@@ -26,11 +26,17 @@ const Login = () => {
       });
       console.log(res);
       const { token } = res.data.token;
+      
       console.log(res.data);
-      localStorage.setItem("user", JSON.stringify(res.data.existingUser));
+      localStorage.setItem("user", JSON.stringify(res.data.existingUser._id));
       console.log(JSON.stringify(res.data.existingUser));
+
       localStorage.setItem("token", token);
       localStorage.setItem("email", email);
+      localStorage.setItem("user_type", res.data.existingUser.user_type[0]);
+      localStorage.setItem("number", res.data.num);
+
+      
 
       navigate("/"); // redirect to home page
     } catch (err) {

@@ -8,24 +8,55 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
   const navigate = useNavigate();
 
   const email = localStorage.getItem("email");
+  const user_type = localStorage.getItem("user_type")
 
-  const sideItems = [
-    {
-      text: "Home",
-      logo: <FaHome />,
-      path: "/dashboard",
-    },
-    {
-      text: "Food",
-      logo: <FaListAlt />,
-      path: "/dashboard/food",
-    },
-    {
-      text: "Profile",
-      logo: <FaUser />,
-      path: "/dashboard/profile",
-    },
-  ];
+
+
+
+
+  const sideItems = () => {
+      if(user_type == "reciver"){
+        return [
+          {
+            text: "Home",
+            logo: <FaHome />,
+            path: "/",
+          },
+          {
+            text: "Food",
+            logo: <FaListAlt />,
+            path: "/dashboard/food",
+          },
+          {
+            text: "Profile",
+            logo: <FaUser />,
+            path: "/dashboard/profile",
+          },
+        ]
+      }
+      else{
+        return [
+          {
+            text: "Home",
+            logo: <FaHome />,
+            path: "/",
+          },
+          {
+            text: "Food",
+            logo: <FaListAlt />,
+            path: "/dashboard/food",
+          },
+          {
+            text: "Profile",
+            logo: <FaUser />,
+            path: "/dashboard/profile",
+          },
+        ]
+      }
+  }
+
+
+  
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -78,7 +109,7 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
           justifyContent: "center",
         }}
       >
-        {sideItems.map((item) => (
+        {sideItems().map((item) => (
           <div
             className="sidebar__body__item"
             style={{
@@ -105,6 +136,10 @@ const Sidebar = ({ user, isSiderOpen, setIsSiderOpen }) => {
             </div>
           </div>
         ))}
+
+
+
+
         {email === "abhyuday7176@gmail.com" && (
           <div
             className="sidebar__body__item"

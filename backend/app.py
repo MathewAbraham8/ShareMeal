@@ -1,9 +1,9 @@
-import numpy as np
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask import Flask,request,jsonify
 from tensorflow.keras.models import load_model
+import numpy as np
 # from keras.preprocessing import image
-from tensorflow.keras.preprocessing.image import img_to_array, load_img
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from flask_cors import CORS
 
 model = load_model('model.h5')
 
@@ -11,10 +11,12 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/predict',methods=['POST'])
-def hello():
-    file = request.files['image']
 
-    
+def hello():
+
+
+    file = request.files['image']
+    print(file)
     # Do something with the file, e.g., save it to disk or process it
     file.save('image.png')
 
@@ -25,18 +27,11 @@ def hello():
     result = model.predict(test_image)
     
     print(result)
-  
+
     arr_list = result.tolist()
 
-    print(arr_list)
-    # classes = ['Fresh Apple','Fresh Banana','Fresh Orange','Rotten Apple','Rotten Banana','Rotten Orange']
 
-    for i in range(6):
-        if arr_list[0][i] == 1.0:
-            if i<3:
-                return jsonify({'message' : 'fresh'})
-            else:
-                return jsonify({'message' : 'rotten'})
+    return jsonify(arr_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

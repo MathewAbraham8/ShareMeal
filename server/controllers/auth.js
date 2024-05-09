@@ -6,9 +6,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export async function signUp(req, res) {
-    const { email, password, name, number } = req.body;
+    const { email, password, name, number,user_type } = req.body;
+
+
 
     try {
+    
+        console.log(user_type)
+    
         // Check if the user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -22,7 +27,7 @@ export async function signUp(req, res) {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Create the user in the database
-        const newUser = await User.create({ email, password: hashedPassword, name, number });
+        const newUser = await User.create({ email, password: hashedPassword, name, number , user_type});
 
         // Generate a JWT token
         const token = jwt.sign({ email: newUser.email, id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -53,7 +58,10 @@ export async function signIn(req, res) {
         // Generate a JWT token
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(200).json({ existingUser, token, message: 'User signed in successfully', success: true });
+        const user_type = existingUser.user_type
+        const num = existingUser.number
+
+        res.status(200).json({ existingUser, num ,  token, user_type , message: 'User signed in successfully', success: true });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });

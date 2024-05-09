@@ -1,95 +1,106 @@
-import React, { useState, useEffect } from "react";
-import FoodCard from "./FoodCard";
-import axios from "axios";
-import "./Food.css";
+  import React, { useState, useEffect } from "react";
+  import FoodCard from "./FoodCard";
+  import axios from "axios";
+  import "./Food.css";
 
-const Food = () => {
-  const [food, setFood] = useState([]);
-  const [selectedTag, setSelectedTag] = useState("all");
+  const Food = () => {
+    const [food, setFood] = useState([]);
+    const [selectedTag, setSelectedTag] = useState("all");
 
-  useEffect(() => {
-    fetchFoodItems();
-  }, []);
+    useEffect(() => {
+      fetchFoodItems();
+    }, []);
 
-  const fetchFoodItems = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/allfoods");
-      setFood(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const user_type = localStorage.getItem('user_type')
+    const email = localStorage.getItem('email')
+    console.log(user_type,email)
 
-  const handleTagChange = (event) => {
-    setSelectedTag(event.target.value);
-  };
+    const data = {user_type : user_type , email : email}
+    console.log(data)
+    
+    const fetchFoodItems = async () => {  
+      try {
+        const response = await axios.get("http://localhost:3000/allfoods",{ params : data});
+        setFood(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const filteredFood =
-    selectedTag === "all"
-      ? food
-      : food.filter((item) => item.foodTag === selectedTag);
+    const handleTagChange = (event) => {
+      setSelectedTag(event.target.value);
+    };
 
-  return (
-    <div className="food">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+    const filteredFood =
+      selectedTag === "all"
+        ? food
+        : food.filter((item) => item.foodTag === selectedTag);
 
-          width: "100%",
-        }}
-      >
-        <h1>Food Available</h1>
+    return (
+      <div className="food">
         <div
-          className="tags"
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "1rem",
+
+            width: "100%",
           }}
         >
-          <label htmlFor="tags">Filter by tag:</label>
-          <select
-            id="tags"
-            name="tags"
-            value={selectedTag}
-            onChange={handleTagChange}
+          <h1>Food Available</h1>
+          <div
+            className="tags"
             style={{
-              padding: "0.5rem",
-              borderRadius: "0.5rem",
-              border: "1px solid #ccc",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "1rem",
             }}
           >
-            <option value="all">All</option>
-            <option value="veg">Veg</option>
-            <option value="nonveg">Non Veg</option>
-          </select>
+            <label htmlFor="tags">Filter by tag:</label>
+            <select
+              id="tags"
+              name="tags"
+              value={selectedTag}
+              onChange={handleTagChange}
+              style={{
+                padding: "0.5rem",
+                borderRadius: "0.5rem",
+                border: "1px solid #ccc",
+              }}
+            >
+              <option value="all">All</option>
+              <option value="veg">Veg</option>
+              <option value="nonveg">Non Veg</option>
+            </select>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          {filteredFood.map((item) => (
+            
+            <FoodCard
+              name={item.foodName}
+              quantity={item.quantity}
+              date={item.expiryDate}
+              address={item.address}
+              tag={item.foodTag}
+              status ={item.status}
+              index = {item._id}
+              recipient = {item.recipient}
+              number = {item.phone}
+            />
+          ))}
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        {filteredFood.map((item) => (
-          <FoodCard
-            key={item._id}
-            name={item.foodName}
-            quantity={item.quantity}
-            date={item.expiryDate}
-            address={item.address}
-            tag={item.foodTag}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default Food;
+  export default Food;

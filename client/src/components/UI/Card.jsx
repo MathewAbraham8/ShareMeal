@@ -3,12 +3,12 @@ import "./Card.css";
 
 const Card = ({ name, des, img }) => {
   return (
-    <div className="partner-card">
+    <div class="partner-card">
       <img src={img} alt="Ngo pic" />
       <div class="card-content">
-        <h2 className="card-heading">{name}</h2>
-        <p className="card-description">{des}</p>
-        <button className="btn-card">Donate Now</button>
+        <h2 class="card-heading">{name}</h2>
+        <p class="card-description">{des}</p>
+        <button class="btn-card">Donate Now</button>
       </div>
     </div>
   );

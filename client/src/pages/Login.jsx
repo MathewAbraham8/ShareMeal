@@ -49,7 +49,7 @@ const Login = () => {
       <div class="login_wrapper">
         <form>
           <h1 className="login__heading">Login</h1>
-          <p>If you are already a member, easily log in</p>
+          <p>If you are already a member, please login</p>
 
           <input
             type="text"

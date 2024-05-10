@@ -98,7 +98,7 @@ const FoodCard = ({ name, quantity, date, address, tag, status, index, recipient
           ) : (
             currentStatus === "not_collected" ? (
                   // This block executes if condition1 is false and condition3 is true
-                  <button className="food-btn">Not Collect</button>
+                  <button className="food-btn">Not Collected</button>
               ) : (
                   // This block executes if none of the conditions are true
                   <button className="food-btn">Collected</button>

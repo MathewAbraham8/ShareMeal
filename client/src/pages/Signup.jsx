@@ -93,7 +93,7 @@ const Signup = () => {
             id="phone"
           />
           
-          <label>Doner</label>
+          <label>Donor</label>
           <input 
             type="radio"
             name="user_type"
@@ -105,7 +105,7 @@ const Signup = () => {
 
           />
 
-          <label>Reciver</label>
+          <label>Recipient</label>
           <input 
             type="radio"
             name="user_type"
